@@ -6,7 +6,7 @@
     <title>Sangam</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,22 +15,34 @@
         }
 
         body {
-            background-color: white;
-            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 25%, #fff3e0 50%, #e8f5e8 75%, #fce4ec 100%);
+            font-family: 'Crimson Text', serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            padding: 2rem 1rem;
+            padding: 4rem 1rem 2rem 1rem;
         }
 
         .sangam-text {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 3rem;
-            color: #333;
+            font-size: 3.5rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #6c757d;
             text-align: center;
             margin-bottom: 3rem;
+            letter-spacing: 1px;
         }
 
         .image-container {
@@ -39,17 +51,22 @@
             align-items: center;
             gap: 2rem;
             width: 100%;
-            max-width: 300px;
+            max-width: 250px;
         }
 
         .image-button {
-            background: none;
+            background: white;
             border: none;
             padding: 0;
             cursor: pointer;
             transition: transform 0.2s ease;
-            width: 100%;
-            max-width: 250px;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .image-button:hover {
@@ -61,11 +78,11 @@
         }
 
         .image-button img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
         }
+
 
         /* Popup Modal Styles */
         .modal {
@@ -124,8 +141,8 @@
             padding: 0.8rem 2rem;
             border-radius: 6px;
             cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
             transition: background-color 0.2s ease;
         }
 
@@ -149,8 +166,17 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 3rem 1rem 2rem 1rem;
+            }
+            
             .sangam-text {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
                 margin-bottom: 2rem;
             }
             
@@ -167,18 +193,19 @@
 </head>
 <body>
     <div class="sangam-text">SANGAM</div>
+    <div class="subtitle">The Distribution Point</div>
     
     <div class="image-container">
-        <button class="image-button" onclick="showPopup('roots')">
-            <img src="roots.png" alt="Roots">
-        </button>
-        
         <button class="image-button" onclick="showPopup('eurogrip')">
             <img src="eurogrip.png" alt="Eurogrip">
         </button>
         
         <button class="image-button" onclick="showPopup('valvoline')">
             <img src="valvoline.png" alt="Valvoline">
+        </button>
+        
+        <button class="image-button" onclick="showPopup('roots')">
+            <img src="roots.png" alt="Roots">
         </button>
     </div>
 
@@ -201,9 +228,9 @@
             const message = document.getElementById('modalMessage');
             
             const messages = {
-                'roots': 'Roots QR Scanner application is not available on this device. Error Code: QR-ROOTS-404. Please install the Roots mobile app from your app store to scan this QR code.',
-                'eurogrip': 'Eurogrip QR Code handler is missing. Error Code: QR-EURO-503. The required Eurogrip application framework is not installed. Please download the official Eurogrip app to continue.',
-                'valvoline': 'Valvoline QR processing service is unavailable. Error Code: QR-VALV-502. The Valvoline mobile application is not detected on your device. Please install the Valvoline app to access this content.'
+                'roots': 'Sangam QR Scanner application is not available on this device. Error Code: QR-SANGAM-404. Please install the Sangam mobile app from your app store to scan this QR code.',
+                'eurogrip': 'Sangam QR Scanner application is not available on this device. Error Code: QR-SANGAM-404. Please install the Sangam mobile app from your app store to scan this QR code.',
+                'valvoline': 'Sangam QR Scanner application is not available on this device. Error Code: QR-SANGAM-404. Please install the Sangam mobile app from your app store to scan this QR code.'
             };
             
             message.textContent = messages[brand] || 'QR code processing failed. Please install the required application.';
