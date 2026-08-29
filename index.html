@@ -1,261 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sangam</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sangam — Partner Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Main Content Container -->
+    <main class="page-container">
+      <header class="header">
+        <span class="eyebrow">Distribution &bull; Gobichettipalayam</span>
+        <h1 class="brand-title">Sangam</h1>
+        <p class="brand-subtitle">The Distribution Point</p>
+      </header>
 
-        body {
-            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 25%, #fff3e0 50%, #e8f5e8 75%, #fce4ec 100%);
-            font-family: 'Crimson Text', serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 4rem 1rem 2rem 1rem;
-        }
-
-        .sangam-text {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 3.5rem;
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            font-family: 'Crimson Text', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            color: #6c757d;
-            text-align: center;
-            margin-bottom: 3rem;
-            letter-spacing: 1px;
-        }
-
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            width: 100%;
-            max-width: 250px;
-        }
-
-        .image-button {
-            background: white;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            width: 200px;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-button:hover {
-            transform: scale(1.05);
-        }
-
-        .image-button:active {
-            transform: scale(0.95);
-        }
-
-        .image-button img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-        }
-
-
-        /* Popup Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 2rem;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal h3 {
-            color: #e74c3c;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .modal p {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        .modal-button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Crimson Text', serif;
-            font-weight: 600;
-            transition: background-color 0.2s ease;
-        }
-
-        .modal-button:hover {
-            background-color: #2980b9;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            position: absolute;
-            right: 1rem;
-            top: 0.5rem;
-        }
-
-        .close:hover {
-            color: #000;
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 3rem 1rem 2rem 1rem;
-            }
-            
-            .sangam-text {
-                font-size: 2.8rem;
-                letter-spacing: 1px;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .image-container {
-                gap: 1.5rem;
-            }
-            
-            .modal-content {
-                margin: 20% auto;
-                padding: 1.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="sangam-text">SANGAM</div>
-    <div class="subtitle">The Distribution Point</div>
-    
-    <div class="image-container">
-        <button class="image-button" onclick="showPopup('eurogrip')">
-            <img src="eurogrip.png" alt="Eurogrip">
+      <div class="card-grid">
+        <!-- Card 1: Eurogrip -->
+        <button class="partner-card" onclick="showPopup('savsol')" type="button">
+          <div class="image-stage">
+            <img src="media/savsolester5.jpg" alt="Savsol Ester 5" />
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <span class="pill">Engine Oil</span>
+              <h2 class="card-title">Savsol Ester 5</h2>
+            </div>
+            <div class="arrow-icon" aria-hidden="true">&rarr;</div>
+          </div>
         </button>
-        
-        <button class="image-button" onclick="showPopup('valvoline')">
-            <img src="valvoline.png" alt="Valvoline">
-        </button>
-        
-        <button class="image-button" onclick="showPopup('roots')">
-            <img src="roots.png" alt="Roots">
-        </button>
-    </div>
 
-    <!-- Popup Modal -->
-    <div id="popupModal" class="modal">
+        <!-- Card 2: Valvoline -->
+        <button class="partner-card" onclick="showPopup('valvoline')" type="button">
+          <div class="image-stage">
+            <img src="media/valvoline.png" alt="Valvoline Lubricants" />
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <span class="pill">Lubricants</span>
+              <h2 class="card-title">Valvoline</h2>
+            </div>
+            <div class="arrow-icon" aria-hidden="true">&rarr;</div>
+          </div>
+        </button>
+
+        <!-- Card 3: Roots -->
+        <button class="partner-card" onclick="showPopup('roots')" type="button">
+          <div class="image-stage">
+            <img src="media/roots.png" alt="Roots Accessories" />
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <span class="pill">Electricals</span>
+              <h2 class="card-title">Roots Auto</h2>
+            </div>
+            <div class="arrow-icon" aria-hidden="true">&rarr;</div>
+          </div>
+        </button>
+      </div>
+    </main>
+
+    <!-- Refined Modal Dialog -->
+    <div id="popupModal" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-card">
         <div class="modal-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <h3>Application Not Found</h3>
-            <p id="modalMessage">
-                The required application to process this QR code is not installed on your device. 
-                Please install the corresponding app from your device's app store and try again.
-            </p>
-            <button class="modal-button" onclick="closePopup()">OK</button>
+          <h3 class="modal-heading">Application Required</h3>
+          <p id="modalMessage" class="modal-copy">
+            The scanner application for this brand partner isn't installed on your device. Please download it from your app store to continue.
+          </p>
         </div>
+        <div class="modal-actions">
+          <button class="modal-btn" onclick="closePopup()">Dismiss</button>
+        </div>
+      </div>
     </div>
 
-    <script>
-        function showPopup(brand) {
-            const modal = document.getElementById('popupModal');
-            const message = document.getElementById('modalMessage');
-            
-            const messages = {
-                'roots': 'Sangam QR Scanner application is not available on this device. Error Code: QR-SANGAM-404. Please install the Sangam mobile app from your app store to scan this QR code.',
-                'eurogrip': 'Sangam QR Scanner application is not available on this device. Error Code: QR-SANGAM-404. Please install the Sangam mobile app from your app store to scan this QR code.',
-                'valvoline': 'Sangam QR Scanner application is not available on this device. Error Code: QR-SANGAM-404. Please install the Sangam mobile app from your app store to scan this QR code.'
-            };
-            
-            message.textContent = messages[brand] || 'QR code processing failed. Please install the required application.';
-            modal.style.display = 'block';
-        }
+    <!-- Clean, Grounded Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-info">
+          <div class="footer-logo">SANGAM FAMILY</div>
+          <p class="footer-loc">
+            No 47, Sangam Corner, Near Bus Stand,<br />
+            Saravana Theatre Road Pirivu, Gobichettipalayam, TN 638452
+          </p>
+        </div>
 
-        function closePopup() {
-            const modal = document.getElementById('popupModal');
-            modal.style.display = 'none';
-        }
+        <div class="footer-links">
+          <a href="tel:+917947119069" class="link-item">
+            <span class="link-label">Direct</span>
+            <span class="link-val">+91 79471 19069</span>
+          </a>
+          <a href="mailto:sangamtyres@gmail.com" class="link-item">
+            <span class="link-label">Inquiries</span>
+            <span class="link-val">sangamtyres@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </footer>
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('popupModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closePopup();
-            }
-        });
-    </script>
-</body>
+    <script src="js/popup.js"></script>
+  </body>
 </html>
